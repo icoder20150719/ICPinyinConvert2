@@ -1,7 +1,21 @@
 # icoder
+
+
+
 用一行代码就可以实现中文转拼音的方法 tabbleview添加分组和索引的方法
 
-_datas = [ICConvert convertToICPinyFlagWithArray:_dataArr key:@"userName"];
+/**
+*  由于系统CFStringTransform转换方法非常耗时
+*
+*  此方法异步调用
+*
+*  @param array 包含ICPinyinFlag的一个数组
+*
+*/
+[ICConvert convertToICPinyinFlagWithArray:_dataArr key:@"userName" UsingBlock:^(NSArray *array) {
+}];
+
+
 
 
 在简书上有这个使用说明 http://www.jianshu.com/p/4d021497e2dd
