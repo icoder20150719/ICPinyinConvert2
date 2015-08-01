@@ -56,12 +56,30 @@
      */
     CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
     
-        _datas = [ICConvert convertToICPinyFlagWithArray:_dataArr key:@"userName"];
+//        _datas = [ICConvert convertToICPinyinFlagWithArray:_dataArr key:@"userName"];
     
     CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
     NSLog(@"执行时间 = %f s",end - start);
     
-    [self.tableView reloadData];}
+    /**
+     *  由于系统CFStringTransform转换方法非常耗时
+     *
+     *  此方法异步调用
+     *
+     *  @param array 包含ICPinyinFlag的一个数组
+     *
+     */
+    [ICConvert convertToICPinyinFlagWithArray:_dataArr key:@"userName" UsingBlock:^(NSArray *array) {
+//            NSLog(@"%@ 线程 ：%@",array,[NSThread currentThread]);
+            _datas = array;
+            [self.tableView reloadData];
+        }];
+
+    
+    
+    
+//    [self.tableView reloadData];
+}
 
 #pragma mark   - TableViewDelegate
 
@@ -79,14 +97,6 @@
     ICPinyinFlag *f = self.datas[section];
     return f.flag;
 }
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSMutableArray *arr = [NSMutableArray array];
-    [self.datas enumerateObjectsUsingBlock:^(ICPinyinFlag *obj, NSUInteger idx, BOOL *stop) {
-        [arr addObject:obj.flag];
-    }];
-    return arr;
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellId = @"CellId";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -95,8 +105,13 @@
     }
     ICPinyinFlag * fl = self.datas[indexPath.section];
     cell.textLabel.text = fl.contents[indexPath.row];
-
-   
-    return cell;
+return cell;
+}
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    NSMutableArray *arr = [NSMutableArray array];
+    [self.datas enumerateObjectsUsingBlock:^(ICPinyinFlag *obj, NSUInteger idx, BOOL *stop) {
+        [arr addObject:obj.flag];
+    }];
+    return arr;
 }
 @end

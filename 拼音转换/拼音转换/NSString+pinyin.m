@@ -11,8 +11,14 @@
 @implementation NSString (pinyin)
 -(NSString *)pinyin{
     //转换为带声调的拼音
+    /**
+     *  非常耗时的操作
+     */
+//  CFAbsoluteTime start =  CFAbsoluteTimeGetCurrent();
     NSMutableString *str = [self mutableCopy];
     CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
+//    CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
+//    NSLog(@"转换为带声调的拼音 = %f",end - start);
     return str;
 
 }
