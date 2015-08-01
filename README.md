@@ -3,6 +3,9 @@
 
 _datas = [ICConvert convertToICPinyFlagWithArray:_dataArr key:@"userName"];
 
+
+在简书上有这个使用说明 http://www.jianshu.com/p/4d021497e2dd
+
 #3-效果演示图
 ![Image](https://github.com/icoder20150719/ICPinyinConvert2/tree/master/demoGif/r2.gif)
 
@@ -13,5 +16,4 @@ github地址：https://github.com/icoder20150719/ICPingyinConvert
 
 
 
-在简书上有这个使用说明 http://www.jianshu.com/p/4d021497e2dd
 
