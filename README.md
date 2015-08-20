@@ -21,7 +21,7 @@
 在简书上有这个使用说明 http://www.jianshu.com/p/4d021497e2dd
 
 #3-效果演示图
-![Image](https://github.com/icoder20150719/ICPinyinConvert2/tree/master/demoGif/r2.gif)
+![Image](https://github.com/icoder20150719/ICPinyinConvert2/blob/master/demoGif/r2.gif)
 
 
 之前朋友写了一个 ICPingyinConvert 用来做中文转换拼音；tabbleview添加分组和索引的方法
