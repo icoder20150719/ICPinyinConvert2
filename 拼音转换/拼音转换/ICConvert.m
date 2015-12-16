@@ -74,11 +74,11 @@ static NSArray *flagIndex;
           */
          [propertyValue removeObjectsInArray:array];
          
-     NSMutableArray *arr = [NSMutableArray array];
-     
-     [array enumerateObjectsUsingBlock:^(ICPinyinObject *obj, NSUInteger idx, BOOL *stop) {
-          [arr addObject:obj.pinyinValue];
-     }];
+         NSMutableArray *arr = [NSMutableArray array];
+         
+         [array enumerateObjectsUsingBlock:^(ICPinyinObject *obj, NSUInteger idx, BOOL *stop) {
+              [arr addObject:obj.pinyinValue];
+         }];
      
          flag.contents = arr;
          /**
@@ -87,8 +87,23 @@ static NSArray *flagIndex;
          if (arr.count != 0) {
              [ctns addObject:flag];
          }
-     
+         
+         
     }
+    
+    //匹配不是以拼音开头的eg：数字、特殊字符
+//    NSLog(@"%@",propertyValue);
+    
+    ICPinyinFlag *numberFlag = [[ICPinyinFlag alloc]init];
+    numberFlag.flag = @"#";
+    NSMutableArray *arr = [NSMutableArray array];
+    //其他不是拼音的全部分组到“#”里面
+    [propertyValue enumerateObjectsUsingBlock:^(ICPinyinObject *obj, NSUInteger idx, BOOL *stop) {
+        [arr addObject:obj.pinyinValue];
+    }];
+    
+    numberFlag.contents = arr;
+    [ctns addObject:numberFlag];
     
     CFAbsoluteTime end2 = CFAbsoluteTimeGetCurrent();
     NSLog(@" 匹配时间 = %f s",end2 - start2);

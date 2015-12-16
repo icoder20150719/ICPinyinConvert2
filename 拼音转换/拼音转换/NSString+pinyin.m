@@ -19,6 +19,7 @@
     CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
 //    CFAbsoluteTime end = CFAbsoluteTimeGetCurrent();
 //    NSLog(@"转换为带声调的拼音 = %f",end - start);
+    NSLog(@"%@",str);
     return str;
 
 }
